@@ -1,1 +1,1 @@
-# menu
+Projeto de calculadora básica feita por motivos de experimentação

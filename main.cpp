@@ -8,29 +8,65 @@ int main()
 {
 
     int valor = inicio();
+
     menu();
 
     int escolha;
-    cin >> escolha;
 
-    switch (escolha)
+    while (true)
     {
-    case 1:
-        cout << "Valor atual: " << valor << "\n";
-        break;
+        cin >> escolha;
 
-    case 2:
-        valor = valor * 2;
-        cout << "Valor atual: " << valor << "\n";
-        break;
+        switch (escolha)
+        {
+        case 1:
+            cout << "Valor atual: " << valor << "\n";
+            menu();
+            break;
 
-    case 3:
-        valor = valor / 2;
-        cout << "Valor atual: " << valor << "\n";
-        break;
+        case 2:
+            int somador;
+            cout << "Somar quanto?\n";
+            cin >> somador;
 
-    default:
-        cout << "Programa encerrado com sucesso\n";
+            valor = valor + somador;
+            cout << "Valor atual: " << valor << "\n";
+            menu();
+            break;
+
+        case 3:
+            int subtrador;
+            cout << "Subtrair quanto?\n";
+            cin >> subtrador;
+
+            valor = valor - subtrador;
+            cout << "Valor atual: " << valor << "\n";
+            menu();
+            break;
+
+        case 4:
+            int multiplicador;
+            cout << "Multiplicar por quanto?\n";
+            cin >> multiplicador;
+
+            valor = valor * multiplicador;
+            cout << "Valor atual: " << valor << "\n";
+            menu();
+            break;
+
+        case 5:
+            int divisor;
+            cout << "Dividir por quanto?\n";
+            cin >> divisor;
+
+            valor = valor / divisor;
+            cout << "Valor atual: " << valor << "\n";
+            menu();
+            break;
+
+        default:
+            cout << "Programa encerrado com sucesso\n";
+        }
     }
     return 0;
 }
@@ -46,10 +82,13 @@ int inicio()
 
 void menu()
 {
-    cout << "O que deseja fazer?\n"
+    cout << "-------------------------------\n"
+         << "O que deseja fazer?\n"
          << "0 - Encerrar o programa\n"
          << "1 - Visualizar o numero\n"
-         << "2 - Multiplicar o numero por dois\n"
-         << "3 - Dividir o numero por dois\n"
+         << "2 - Somar ao numero\n"
+         << "3 - Subtrair do numero\n"
+         << "4 - Multiplicar o numero\n"
+         << "5 - Dividir o numero\n"
          << "-------------------------------\n";
 }
