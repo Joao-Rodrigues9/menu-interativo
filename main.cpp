@@ -1,12 +1,12 @@
 #include <iostream>
 
-int inicio();
-void menu(int valorAtual);
+double inicio();
+void menu(double valorAtual);
 
 int main()
 {
 
-    int valor = inicio();
+    double valor = inicio();
 
     menu(valor);
 
@@ -19,11 +19,7 @@ int main()
         switch (escolha)
         {
         case 1:
-            menu(valor);
-            break;
-
-        case 2:
-            int somador;
+            double somador;
             std::cout << "Somar quanto?\n";
             std::cin >> somador;
 
@@ -31,8 +27,8 @@ int main()
             menu(valor);
             break;
 
-        case 3:
-            int subtrador;
+        case 2:
+            double subtrador;
             std::cout << "Subtrair quanto?\n";
             std::cin >> subtrador;
 
@@ -40,8 +36,8 @@ int main()
             menu(valor);
             break;
 
-        case 4:
-            int multiplicador;
+        case 3:
+            double multiplicador;
             std::cout << "Multiplicar por quanto?\n";
             std::cin >> multiplicador;
 
@@ -49,8 +45,8 @@ int main()
             menu(valor);
             break;
 
-        case 5:
-            int divisor;
+        case 4:
+            double divisor;
             std::cout << "Dividir por quanto?\n";
             std::cin >> divisor;
 
@@ -65,25 +61,24 @@ int main()
     return 0;
 }
 
-int inicio()
+double inicio()
 {
     std::cout << "Indique seu numero:\n";
-    int num;
+    double num;
     std::cin >> num;
 
     return num;
 }
 
-void menu(int valorAtual)
+void menu(double valorAtual)
 {
     std::cout << "-------------------------------\n"
               << "O que deseja fazer?\n"
               << "0 - Encerrar o programa\n"
-              << "1 - Visualizar o numero\n"
-              << "2 - Somar ao numero\n"
-              << "3 - Subtrair do numero\n"
-              << "4 - Multiplicar o numero\n"
-              << "5 - Dividir o numero\n"
+              << "1 - Somar ao numero\n"
+              << "2 - Subtrair do numero\n"
+              << "3 - Multiplicar o numero\n"
+              << "4 - Dividir o numero\n"
               << "-------------------------------\n"
               << "Valor atual: " << valorAtual << "\n"
               << "-------------------------------\n";
