@@ -1,14 +1,37 @@
 #include <iostream>
 
-double inicio();
-void menu(double valorAtual);
+void calculadora();
+double iniciarCalc();
+void printarMenuCalc(double valorAtual);
 
 int main()
 {
+    std::cout << "0- Encerrar programa\n"
+              << "1- Calculadora\n"
+              << "--------------------\n"
+              << "O que deseja fazer?\n";
 
-    double valor = inicio();
+    int escolha;
+    std::cin >> escolha;
 
-    menu(valor);
+    switch (escolha)
+    {
+    case 1:
+        calculadora();
+        break;
+
+    case 0:
+        break;
+    }
+    return 0;
+}
+
+void calculadora()
+{
+
+    double valor = iniciarCalc();
+
+    printarMenuCalc(valor);
 
     char escolha;
 
@@ -24,7 +47,7 @@ int main()
             std::cin >> somador;
 
             valor = valor + somador;
-            menu(valor);
+            printarMenuCalc(valor);
             break;
 
         case '-':
@@ -33,7 +56,7 @@ int main()
             std::cin >> subtrador;
 
             valor = valor - subtrador;
-            menu(valor);
+            printarMenuCalc(valor);
             break;
 
         case '*':
@@ -42,44 +65,49 @@ int main()
             std::cin >> multiplicador;
 
             valor = valor * multiplicador;
-            menu(valor);
+            printarMenuCalc(valor);
             break;
-
         case '/':
             double divisor;
             std::cout << "Dividir por quanto?\n";
             std::cin >> divisor;
 
             valor = valor / divisor;
-            menu(valor);
+            printarMenuCalc(valor);
+            break;
+
+        case 'E':
+            std::cout << "--------------------\n";
+            main();
             break;
 
         default:
-            std::cout << "Programa encerrado com sucesso\n";
+            std::cout << "Invalido\n";
+            printarMenuCalc(valor);
+            break;
         }
     }
-    return 0;
 }
 
-double inicio()
+double iniciarCalc()
 {
-    std::cout << "Indique seu numero:\n";
+    std::cout << "Coloque seu numero de entrada:\n";
     double num;
     std::cin >> num;
 
     return num;
 }
 
-void menu(double valorAtual)
+void printarMenuCalc(double valorAtual)
 {
     std::cout << "-------------------------------\n"
-              << "O que deseja fazer?\n"
-              << "0 -> Encerrar o programa\n"
+              << "E -> Retornar ao menu principal\n"
               << "+ -> Somar ao numero\n"
               << "- -> Subtrair do numero\n"
               << "* -> Multiplicar o numero\n"
               << "/ -> Dividir o numero\n"
               << "-------------------------------\n"
               << "Valor atual: " << valorAtual << "\n"
-              << "-------------------------------\n";
+              << "-------------------------------\n"
+              << "O que deseja fazer?\n";
 }
