@@ -1,14 +1,14 @@
 #include <iostream>
 
 int inicio();
-void menu();
+void menu(int valorAtual);
 
 int main()
 {
 
     int valor = inicio();
 
-    menu();
+    menu(valor);
 
     int escolha;
 
@@ -19,8 +19,7 @@ int main()
         switch (escolha)
         {
         case 1:
-            std::cout << "Valor atual: " << valor << "\n";
-            menu();
+            menu(valor);
             break;
 
         case 2:
@@ -29,8 +28,7 @@ int main()
             std::cin >> somador;
 
             valor = valor + somador;
-            std::cout << "Valor atual: " << valor << "\n";
-            menu();
+            menu(valor);
             break;
 
         case 3:
@@ -39,8 +37,7 @@ int main()
             std::cin >> subtrador;
 
             valor = valor - subtrador;
-            std::cout << "Valor atual: " << valor << "\n";
-            menu();
+            menu(valor);
             break;
 
         case 4:
@@ -49,8 +46,7 @@ int main()
             std::cin >> multiplicador;
 
             valor = valor * multiplicador;
-            std::cout << "Valor atual: " << valor << "\n";
-            menu();
+            menu(valor);
             break;
 
         case 5:
@@ -59,8 +55,7 @@ int main()
             std::cin >> divisor;
 
             valor = valor / divisor;
-            std::cout << "Valor atual: " << valor << "\n";
-            menu();
+            menu(valor);
             break;
 
         default:
@@ -79,7 +74,7 @@ int inicio()
     return num;
 }
 
-void menu()
+void menu(int valorAtual)
 {
     std::cout << "-------------------------------\n"
               << "O que deseja fazer?\n"
@@ -89,5 +84,7 @@ void menu()
               << "3 - Subtrair do numero\n"
               << "4 - Multiplicar o numero\n"
               << "5 - Dividir o numero\n"
+              << "-------------------------------\n"
+              << "Valor atual: " << valorAtual << "\n"
               << "-------------------------------\n";
 }
