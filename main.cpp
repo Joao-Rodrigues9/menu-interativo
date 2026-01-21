@@ -10,7 +10,7 @@ int main()
 
     menu(valor);
 
-    int escolha;
+    char escolha;
 
     while (true)
     {
@@ -18,7 +18,7 @@ int main()
 
         switch (escolha)
         {
-        case 1:
+        case '+':
             double somador;
             std::cout << "Somar quanto?\n";
             std::cin >> somador;
@@ -27,7 +27,7 @@ int main()
             menu(valor);
             break;
 
-        case 2:
+        case '-':
             double subtrador;
             std::cout << "Subtrair quanto?\n";
             std::cin >> subtrador;
@@ -36,7 +36,7 @@ int main()
             menu(valor);
             break;
 
-        case 3:
+        case '*':
             double multiplicador;
             std::cout << "Multiplicar por quanto?\n";
             std::cin >> multiplicador;
@@ -45,7 +45,7 @@ int main()
             menu(valor);
             break;
 
-        case 4:
+        case '/':
             double divisor;
             std::cout << "Dividir por quanto?\n";
             std::cin >> divisor;
@@ -74,11 +74,11 @@ void menu(double valorAtual)
 {
     std::cout << "-------------------------------\n"
               << "O que deseja fazer?\n"
-              << "0 - Encerrar o programa\n"
-              << "1 - Somar ao numero\n"
-              << "2 - Subtrair do numero\n"
-              << "3 - Multiplicar o numero\n"
-              << "4 - Dividir o numero\n"
+              << "0 -> Encerrar o programa\n"
+              << "+ -> Somar ao numero\n"
+              << "- -> Subtrair do numero\n"
+              << "* -> Multiplicar o numero\n"
+              << "/ -> Dividir o numero\n"
               << "-------------------------------\n"
               << "Valor atual: " << valorAtual << "\n"
               << "-------------------------------\n";
