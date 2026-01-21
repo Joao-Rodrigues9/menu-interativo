@@ -120,18 +120,19 @@ void converterTemperatura()
 
     while (true)
     {
-        std::cout << "Deseja converter a temperatura como?\n";
-        std::cout << "(Utilize C - Celsius; F - Fahrenheit; K - Kelvin)\n";
+        int escolha;
+        std::cout << "Deseja converter a temperatura como?\n"
+                  << "0- Retonar ao menu principal\n"
+                  << "1- Celsius para Fahrenheit\n"
+                  << "2- Celsius para Kelvin\n"
+                  << "3- Fahrenheit para Celsius\n"
+                  << "4- Fahrenheit para Kelvin\n"
+                  << "5- Kelvin para Celsius\n"
+                  << "6- Kelvin para Fahrenheit\n";
 
-        std::cout << "De: ";
+        if
 
-        std::cin >> tipoAtual;
-
-        std::cout << "Para: ";
-
-        std::cin >> tipoDesejado;
-
-        double temperatura;
+            double temperatura;
         std::cout << "Informe a temperatura: ";
         std::cin >> temperatura;
 
