@@ -1,1 +1,3 @@
-Projeto de calculadora básica feita por motivos de experimentação
+Projeto de menu interativo.
+Atualmente possui as tarefas:
+Calculadora
