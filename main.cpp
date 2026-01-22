@@ -3,11 +3,15 @@
 void calculadora();
 double iniciarCalc();
 void printarMenuCalc(double valorAtual);
+void converterTemperatura();
 
 int main()
 {
-    std::cout << "0- Encerrar programa\n"
+
+    std::cout << "--------------------\n"
+              << "0- Encerrar programa\n"
               << "1- Calculadora\n"
+              << "2- Conversor de Temperatura\n"
               << "--------------------\n"
               << "O que deseja fazer?\n";
 
@@ -18,6 +22,10 @@ int main()
     {
     case 1:
         calculadora();
+        break;
+
+    case 2:
+        converterTemperatura();
         break;
 
     case 0:
@@ -67,6 +75,7 @@ void calculadora()
             valor = valor * multiplicador;
             printarMenuCalc(valor);
             break;
+
         case '/':
             double divisor;
             std::cout << "Dividir por quanto?\n";
@@ -77,7 +86,6 @@ void calculadora()
             break;
 
         case 'E':
-            std::cout << "--------------------\n";
             main();
             break;
 
@@ -102,12 +110,109 @@ void printarMenuCalc(double valorAtual)
 {
     std::cout << "-------------------------------\n"
               << "E -> Retornar ao menu principal\n"
-              << "+ -> Somar ao numero\n"
-              << "- -> Subtrair do numero\n"
-              << "* -> Multiplicar o numero\n"
-              << "/ -> Dividir o numero\n"
+              << "+ -> Adicao\n"
+              << "- -> Subtracao\n"
+              << "* -> Multiplicacao\n"
+              << "/ -> Divisao\n"
               << "-------------------------------\n"
               << "Valor atual: " << valorAtual << "\n"
-              << "-------------------------------\n"
-              << "O que deseja fazer?\n";
+              << "-------------------------------\n";
+}
+
+void converterTemperatura()
+{
+    char tipoAtual;
+    char tipoDesejado;
+
+    while (true)
+    {
+        int escolha;
+        std::cout << "-------------------------------\n"
+                  << "0- Retonar ao menu principal\n"
+                  << "1- Celsius para Fahrenheit\n"
+                  << "2- Celsius para Kelvin\n"
+                  << "3- Fahrenheit para Celsius\n"
+                  << "4- Fahrenheit para Kelvin\n"
+                  << "5- Kelvin para Celsius\n"
+                  << "6- Kelvin para Fahrenheit\n"
+                  << "-------------------------------\n";
+
+        std::cin >> escolha;
+        switch (escolha)
+        {
+        case 1:
+            tipoAtual = 'C';
+            tipoDesejado = 'F';
+            break;
+
+        case 2:
+            tipoAtual = 'C';
+            tipoDesejado = 'K';
+            break;
+
+        case 3:
+            tipoAtual = 'F';
+            tipoDesejado = 'C';
+            break;
+
+        case 4:
+            tipoAtual = 'F';
+            tipoDesejado = 'K';
+            break;
+
+        case 5:
+            tipoAtual = 'K';
+            tipoDesejado = 'C';
+            break;
+
+        case 6:
+            tipoAtual = 'K';
+            tipoDesejado = 'F';
+            break;
+
+        case 0:
+            main();
+            break;
+
+        default:
+            std::cout << "Invalido\n";
+            converterTemperatura();
+            break;
+        }
+
+        double temperatura;
+        std::cout << "Informe a temperatura de entrada: ";
+        std::cin >> temperatura;
+
+        if (tipoAtual == 'C' && tipoDesejado == 'F')
+        {
+            temperatura = temperatura * (9 / 5.0) + 32;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'C' && tipoDesejado == 'K')
+        {
+            temperatura = temperatura + 273.15;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'F' && tipoDesejado == 'C')
+        {
+            temperatura = (temperatura - 32) * (5 / 9.0);
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'F' && tipoDesejado == 'K')
+        {
+            temperatura = (temperatura - 32) * (5 / 9.0) + 273.15;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'K' && tipoDesejado == 'C')
+        {
+            temperatura = temperatura - 273.15;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'K' && tipoDesejado == 'F')
+        {
+            temperatura = (temperatura - 273.15) * 9 / 5 + 32;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+    }
 }
