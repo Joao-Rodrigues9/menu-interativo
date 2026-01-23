@@ -19,6 +19,14 @@ int main()
 
         std::cin >> escolha;
 
+        if (std::cin.fail()) // caso entrem com algo que não seja int
+        {
+            std::cout << "Invalido\n";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            continue;
+        }
+
         switch (escolha)
         {
         case 1:
@@ -30,16 +38,14 @@ int main()
             break;
 
         case 0:
-            break;
+            return 0;
 
         default:
             std::cout << "Invalido\n";
-            break;
+            continue;
         }
 
-    } while (escolha != 0);
-
-    return 0;
+    } while (true);
 }
 
 void calculadora()
@@ -99,9 +105,9 @@ void calculadora()
         default:
             std::cout << "Invalido\n";
             printarMenuCalc(valor);
-            break;
+            continue;
         }
-    } while (escolha != 'E');
+    } while (true);
 }
 
 double iniciarCalc()
@@ -109,6 +115,13 @@ double iniciarCalc()
     std::cout << "Coloque seu numero de entrada:\n";
     double num;
     std::cin >> num;
+
+    if (std::cin.fail()) // caso entrem com algo que não seja double
+    {
+        std::cout << "Invalido, iniciando valor como 0\n";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
 
     return num;
 }
@@ -132,12 +145,9 @@ void converterTemperatura()
     char tipoDesejado;
     int escolha;
     double temperatura;
-    bool preencheuCorretamente = true;
 
     do
     {
-        preencheuCorretamente = true;
-
         std::cout << "-------------------------------\n"
                   << "0- Retonar ao menu principal\n"
                   << "1- Celsius para Fahrenheit\n"
@@ -149,6 +159,15 @@ void converterTemperatura()
                   << "-------------------------------\n";
 
         std::cin >> escolha;
+
+        if (std::cin.fail()) // caso entrem com algo que não seja int
+        {
+            std::cout << "Invalido\n";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            continue;
+        }
+
         switch (escolha)
         {
         case 1:
@@ -186,45 +205,50 @@ void converterTemperatura()
 
         default:
             std::cout << "Invalido\n";
-            preencheuCorretamente = false;
-            break;
+            continue;
         }
 
-        if (preencheuCorretamente == true)
+        std::cout << "Informe a temperatura de entrada: ";
+        std::cin >> temperatura;
+
+        if (std::cin.fail()) // caso entrem com algo que não seja double
         {
-            std::cout << "Informe a temperatura de entrada: ";
-            std::cin >> temperatura;
-
-            if (tipoAtual == 'C' && tipoDesejado == 'F')
-            {
-                temperatura = temperatura * (9 / 5.0) + 32;
-                std::cout << temperatura << " graus " << tipoDesejado << "\n";
-            }
-            else if (tipoAtual == 'C' && tipoDesejado == 'K')
-            {
-                temperatura = temperatura + 273.15;
-                std::cout << temperatura << " graus " << tipoDesejado << "\n";
-            }
-            else if (tipoAtual == 'F' && tipoDesejado == 'C')
-            {
-                temperatura = (temperatura - 32) * (5 / 9.0);
-                std::cout << temperatura << " graus " << tipoDesejado << "\n";
-            }
-            else if (tipoAtual == 'F' && tipoDesejado == 'K')
-            {
-                temperatura = (temperatura - 32) * (5 / 9.0) + 273.15;
-                std::cout << temperatura << " graus " << tipoDesejado << "\n";
-            }
-            else if (tipoAtual == 'K' && tipoDesejado == 'C')
-            {
-                temperatura = temperatura - 273.15;
-                std::cout << temperatura << " graus " << tipoDesejado << "\n";
-            }
-            else if (tipoAtual == 'K' && tipoDesejado == 'F')
-            {
-                temperatura = (temperatura - 273.15) * 9 / 5 + 32;
-                std::cout << temperatura << " graus " << tipoDesejado << "\n";
-            }
+            std::cout << "Invalido\n";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            continue;
         }
-    } while (escolha != 0);
+
+        if (tipoAtual == 'C' && tipoDesejado == 'F')
+        {
+            temperatura = temperatura * (9 / 5.0) + 32;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'C' && tipoDesejado == 'K')
+        {
+            temperatura = temperatura + 273.15;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'F' && tipoDesejado == 'C')
+        {
+            temperatura = (temperatura - 32) * (5 / 9.0);
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'F' && tipoDesejado == 'K')
+        {
+            temperatura = (temperatura - 32) * (5 / 9.0) + 273.15;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'K' && tipoDesejado == 'C')
+        {
+            temperatura = temperatura - 273.15;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+        else if (tipoAtual == 'K' && tipoDesejado == 'F')
+        {
+            temperatura = (temperatura - 273.15) * 9 / 5 + 32;
+            std::cout << temperatura << " graus " << tipoDesejado << "\n";
+        }
+
+    } while (true);
 }
