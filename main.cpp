@@ -52,7 +52,6 @@ void calculadora()
 {
 
     double valor = iniciarCalc();
-
     printarMenuCalc(valor);
 
     char escolha;
@@ -116,7 +115,7 @@ double iniciarCalc()
     double num;
     std::cin >> num;
 
-    if (std::cin.fail()) // caso insiram algo que não seja double
+    if (std::cin.fail())
     {
         std::cout << "Invalido, iniciando valor como 0\n";
         std::cin.clear();
@@ -141,8 +140,7 @@ void printarMenuCalc(double valorAtual)
 
 void converterTemperatura()
 {
-    char tipoAtual;
-    char tipoDesejado;
+    char tipoAtual, tipoDesejado;
     int escolha;
     double temperatura;
 
@@ -160,7 +158,7 @@ void converterTemperatura()
 
         std::cin >> escolha;
 
-        if (std::cin.fail()) // caso insiram algo que não seja int
+        if (std::cin.fail())
         {
             std::cout << "Invalido\n";
             std::cin.clear();
@@ -171,33 +169,27 @@ void converterTemperatura()
         switch (escolha)
         {
         case 1:
-            tipoAtual = 'C';
-            tipoDesejado = 'F';
+            tipoAtual = 'C', tipoDesejado = 'F';
             break;
 
         case 2:
-            tipoAtual = 'C';
-            tipoDesejado = 'K';
+            tipoAtual = 'C', tipoDesejado = 'K';
             break;
 
         case 3:
-            tipoAtual = 'F';
-            tipoDesejado = 'C';
+            tipoAtual = 'F', tipoDesejado = 'C';
             break;
 
         case 4:
-            tipoAtual = 'F';
-            tipoDesejado = 'K';
+            tipoAtual = 'F', tipoDesejado = 'K';
             break;
 
         case 5:
-            tipoAtual = 'K';
-            tipoDesejado = 'C';
+            tipoAtual = 'K', tipoDesejado = 'C';
             break;
 
         case 6:
-            tipoAtual = 'K';
-            tipoDesejado = 'F';
+            tipoAtual = 'K', tipoDesejado = 'F';
             break;
 
         case 0:
@@ -211,7 +203,7 @@ void converterTemperatura()
         std::cout << "Informe a temperatura de entrada: ";
         std::cin >> temperatura;
 
-        if (std::cin.fail()) // caso insiram algo que não seja double
+        if (std::cin.fail())
         {
             std::cout << "Invalido\n";
             std::cin.clear();
