@@ -314,6 +314,11 @@ void partidaVinteUm()
                 cartaPC = rand() % 10 + 1;
                 deckPC.push_back(cartaPC);
             }
+            else if (somaPC <= 16)
+            {
+                cartaPC = rand() % 10 + 1;
+                deckPC.push_back(cartaPC);
+            }
         }
 
         enabler = true;
@@ -331,13 +336,19 @@ void partidaVinteUm()
         std::cout << "\n";
         std::cout << "Soma: " << soma << "\n\n";
 
-        std::cout << "Cartas do oponente: [" << deckPC[0] << "] ? ? ?\n"
+        std::cout << "Cartas do oponente: [" << deckPC[0] << "] ";
+        for (size_t i = 0; i < deckPC.size() - 1; i++)
+        {
+            std::cout << "[?] ";
+        }
+
+        std::cout << "\n"
                   << "-------------------------------\n";
 
         if (soma > 21)
         {
-            std::cout << "Jogador: " << soma << "  " << "PC: " << somaPC << '\n';
-            std::cout << "Perdeu!\n";
+            std::cout << "Jogador: "
+                      << soma << "\nPerdeu!\n";
             return;
         }
 
@@ -348,13 +359,6 @@ void partidaVinteUm()
         for (size_t i = 0; i < deckPC.size(); i++)
         {
             somaPC += deckPC[i];
-        }
-
-        while (somaPC <= 16)
-        {
-            cartaPC = rand() % 10 + 1;
-            deckPC.push_back(cartaPC);
-            somaPC += cartaPC;
         }
 
         int escolha;
@@ -370,6 +374,27 @@ void partidaVinteUm()
 
         if (escolha == 0)
         {
+            while (somaPC <= 16)
+            {
+                cartaPC = rand() % 10 + 1;
+                deckPC.push_back(cartaPC);
+                somaPC += cartaPC;
+            }
+
+            somaPC = 0;
+            for (size_t i = 0; i < deckPC.size(); i++)
+            {
+                somaPC += deckPC[i];
+            }
+
+            std::cout << "-------------------------------\n"
+                      << "Cartas do oponente: ";
+            for (size_t i = 0; i < deckPC.size(); i++)
+            {
+                std::cout << "[" << deckPC[i] << "] ";
+            }
+            std::cout << '\n';
+
             if (soma > 21 || (soma <= 21 && somaPC <= 21 && somaPC > soma))
             {
                 std::cout << "Jogador: " << soma << "   " << "PC: " << somaPC << '\n';
