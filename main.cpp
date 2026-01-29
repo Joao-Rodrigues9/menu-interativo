@@ -20,7 +20,7 @@ int main()
                   << "[1] - Calculadora\n"
                   << "[2] - Conversor de Temperatura\n"
                   << "[3] - Jogo Vinte Um\n"
-                  << "[4] - Controle de Gastos"
+                  << "[4] - Controle de Gastos\n"
                   << "--------------------\n"
                   << "O que deseja fazer?\n";
 
@@ -472,12 +472,31 @@ void controleDeGastos()
 
         switch (escolha)
         {
+        case 0:
+            return;
+
         case 1:
+        {
             Gasto temp = registrarGasto(idGasto);
             listaGasto.push_back(temp);
             idGasto++;
+            break;
+        }
 
         case 2:
+            listarGastos(listaGasto);
+            break;
+
+        case 3:
+        {
+            float gastoTotal = 0;
+            for (const Gasto &gasto : listaGasto)
+            {
+                gastoTotal += gasto.valor;
+            }
+            std::cout << "\nTotal em gastos: " << gastoTotal << '\n';
+            break;
+        }
         }
 
     } while (true);
@@ -488,7 +507,10 @@ Gasto registrarGasto(int id)
     Gasto novoGasto;
 
     novoGasto.id = id;
+    std::cout << "\nInsira a descricao: ";
+    std::cin.ignore(1000, '\n');
     std::getline(std::cin, novoGasto.descricao);
+    std::cout << "Insira o valor: ";
     std::cin >> novoGasto.valor;
 
     return novoGasto;
@@ -498,6 +520,8 @@ void listarGastos(const std::vector<Gasto> &listaGasto)
 {
     for (const Gasto &gasto : listaGasto)
     {
-        std::cout <<
+        std::cout << "\nId: " << gasto.id << '\n'
+                  << "Descricao: " << gasto.descricao << '\n'
+                  << "Valor: " << gasto.valor << "\n\n";
     }
 }
