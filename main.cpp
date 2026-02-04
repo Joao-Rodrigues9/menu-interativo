@@ -9,6 +9,7 @@ void converterTemperatura();
 void jogoVinteUm();
 void partidaVinteUm();
 void controleDeGastos();
+void cinHelp(); // caso cin.fail
 
 int main()
 {
@@ -28,8 +29,7 @@ int main()
 
         if (std::cin.fail()) // caso insiram algo que não seja int
         {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            cinHelp();
             continue;
         }
 
@@ -78,8 +78,18 @@ void calculadora()
         case '+':
         {
             double somador;
-            std::cout << "Somar quanto?\n";
-            std::cin >> somador;
+            do
+            {
+                std::cout << "Somar quanto?\n";
+                std::cin >> somador;
+
+                if (!std::cin.fail())
+                {
+                    break;
+                }
+                cinHelp();
+
+            } while (true);
 
             valor = valor + somador;
             printarMenuCalc(valor);
@@ -89,8 +99,18 @@ void calculadora()
         case '-':
         {
             double subtrador;
-            std::cout << "Subtrair quanto?\n";
-            std::cin >> subtrador;
+            do
+            {
+                std::cout << "Subtrair quanto?\n";
+                std::cin >> subtrador;
+
+                if (!std::cin.fail())
+                {
+                    break;
+                }
+                cinHelp();
+
+            } while (true);
 
             valor = valor - subtrador;
             printarMenuCalc(valor);
@@ -100,8 +120,18 @@ void calculadora()
         case '*':
         {
             double multiplicador;
-            std::cout << "Multiplicar por quanto?\n";
-            std::cin >> multiplicador;
+            do
+            {
+                std::cout << "Multiplicar por quanto?\n";
+                std::cin >> multiplicador;
+
+                if (!std::cin.fail())
+                {
+                    break;
+                }
+                cinHelp();
+
+            } while (true);
 
             valor = valor * multiplicador;
             printarMenuCalc(valor);
@@ -111,8 +141,18 @@ void calculadora()
         case '/':
         {
             double divisor;
-            std::cout << "Dividir por quanto?\n";
-            std::cin >> divisor;
+            do
+            {
+                std::cout << "Dividir por quanto?\n";
+                std::cin >> divisor;
+
+                if (!std::cin.fail())
+                {
+                    break;
+                }
+                cinHelp();
+
+            } while (true);
 
             valor = valor / divisor;
             printarMenuCalc(valor);
@@ -138,8 +178,7 @@ double iniciarCalc()
     if (std::cin.fail())
     {
         std::cout << "Invalido, iniciando valor como 0\n";
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
+        cinHelp();
     }
 
     return num;
@@ -180,8 +219,7 @@ void converterTemperatura()
 
         if (std::cin.fail())
         {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            cinHelp();
             continue;
         }
 
@@ -216,8 +254,7 @@ void converterTemperatura()
 
         if (std::cin.fail())
         {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            cinHelp();
             continue;
         }
 
@@ -272,8 +309,7 @@ void jogoVinteUm()
 
         if (std::cin.fail())
         {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            cinHelp();
             continue;
         }
 
@@ -373,8 +409,7 @@ void partidaVinteUm()
 
         if (std::cin.fail())
         {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            cinHelp();
             enabler = false;
             continue;
         }
@@ -455,7 +490,7 @@ void controleDeGastos()
         std::cout << "-------------------------------\n"
                   << "O que deseja fazer?\n"
                   << "[1] - Registrar gasto\n"
-                  << "[2] - Listas gastos\n"
+                  << "[2] - Listar gastos\n"
                   << "[3] - Total gasto\n"
                   << "[4] - Remover gasto\n"
                   << "[0] - Retonar ao menu principal\n"
@@ -466,8 +501,7 @@ void controleDeGastos()
 
         if (std::cin.fail())
         {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            cinHelp();
             continue;
         }
 
@@ -498,6 +532,10 @@ void controleDeGastos()
             std::cout << "Total em gastos: " << gastoTotal << '\n';
             break;
         }
+        case 4:
+            int idExclusao;
+            std::cout << "Insira o id do gasto que deseja excluir: ";
+            std::cin >> idExclusao;
         }
 
     } while (true);
@@ -511,9 +549,19 @@ Gasto registrarGasto(int id)
     std::cout << "Insira a descricao: ";
     std::cin.ignore(1000, '\n');
     std::getline(std::cin, novoGasto.descricao);
-    std::cout << "Insira o valor: ";
-    std::cin >> novoGasto.valor;
 
+    do
+    {
+        std::cout << "Insira o valor: ";
+        std::cin >> novoGasto.valor;
+
+        if (!std::cin.fail())
+        {
+            break;
+        }
+        cinHelp();
+
+    } while (true);
     return novoGasto;
 }
 
@@ -526,4 +574,11 @@ void listarGastos(const std::vector<Gasto> &listaGasto)
                   << "Descricao: " << gasto.descricao << '\n'
                   << "Valor: " << gasto.valor << "\n\n";
     }
+}
+
+void cinHelp()
+{
+    std::cin.clear();
+    std::cin.ignore(1000, '\n');
+    return;
 }
