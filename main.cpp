@@ -76,6 +76,7 @@ void calculadora()
         switch (escolha)
         {
         case '+':
+        {
             double somador;
             std::cout << "Somar quanto?\n";
             std::cin >> somador;
@@ -83,8 +84,10 @@ void calculadora()
             valor = valor + somador;
             printarMenuCalc(valor);
             break;
+        }
 
         case '-':
+        {
             double subtrador;
             std::cout << "Subtrair quanto?\n";
             std::cin >> subtrador;
@@ -92,8 +95,10 @@ void calculadora()
             valor = valor - subtrador;
             printarMenuCalc(valor);
             break;
+        }
 
         case '*':
+        {
             double multiplicador;
             std::cout << "Multiplicar por quanto?\n";
             std::cin >> multiplicador;
@@ -101,8 +106,10 @@ void calculadora()
             valor = valor * multiplicador;
             printarMenuCalc(valor);
             break;
+        }
 
         case '/':
+        {
             double divisor;
             std::cout << "Dividir por quanto?\n";
             std::cin >> divisor;
@@ -110,6 +117,7 @@ void calculadora()
             valor = valor / divisor;
             printarMenuCalc(valor);
             break;
+        }
 
         case '0':
             return;
@@ -182,30 +190,23 @@ void converterTemperatura()
         case 1:
             tipoAtual = 'C', tipoDesejado = 'F';
             break;
-
         case 2:
             tipoAtual = 'C', tipoDesejado = 'K';
             break;
-
         case 3:
             tipoAtual = 'F', tipoDesejado = 'C';
             break;
-
         case 4:
             tipoAtual = 'F', tipoDesejado = 'K';
             break;
-
         case 5:
             tipoAtual = 'K', tipoDesejado = 'C';
             break;
-
         case 6:
             tipoAtual = 'K', tipoDesejado = 'F';
             break;
-
         case 0:
             return;
-
         default:
             continue;
         }
