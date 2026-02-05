@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <cctype>
 #include <ctime>
 #include <vector>
 
@@ -9,11 +11,11 @@ void converterTemperatura();
 void jogoVinteUm();
 void partidaVinteUm();
 void controleDeGastos();
-void cinHelp(); // caso cin.fail()
+bool ehNumero(const std::string ex); // retorna se o usuario inseriu um numero ou se teve char no meio
 
 int main()
 {
-    int escolha;
+    std::string entrada;
     do
     {
         std::cout << "--------------------\n"
@@ -25,13 +27,14 @@ int main()
                   << "--------------------\n"
                   << "O que deseja fazer?\n";
 
-        std::cin >> escolha;
+        std::cin >> entrada;
 
-        if (std::cin.fail()) // caso insiram algo que não seja int
+        if (!ehNumero(entrada))
         {
-            cinHelp();
             continue;
         }
+
+        int escolha = stoi(entrada);
 
         switch (escolha)
         {
@@ -77,17 +80,19 @@ void calculadora()
         {
         case '+':
         {
+            std::string entrada;
             double somador;
             do
             {
                 std::cout << "Somar quanto?\n";
-                std::cin >> somador;
+                std::cin >> entrada;
 
-                if (!std::cin.fail())
+                if (!ehNumero(entrada))
                 {
-                    break;
+                    continue;
                 }
-                cinHelp();
+                somador = stod(entrada);
+                break;
 
             } while (true);
 
@@ -98,17 +103,19 @@ void calculadora()
 
         case '-':
         {
+            std::string entrada;
             double subtrador;
             do
             {
                 std::cout << "Subtrair quanto?\n";
-                std::cin >> subtrador;
+                std::cin >> entrada;
 
-                if (!std::cin.fail())
+                if (!ehNumero(entrada))
                 {
-                    break;
+                    continue;
                 }
-                cinHelp();
+                subtrador = stod(entrada);
+                break;
 
             } while (true);
 
@@ -119,17 +126,19 @@ void calculadora()
 
         case '*':
         {
+            std::string entrada;
             double multiplicador;
             do
             {
                 std::cout << "Multiplicar por quanto?\n";
-                std::cin >> multiplicador;
+                std::cin >> entrada;
 
-                if (!std::cin.fail())
+                if (!ehNumero(entrada))
                 {
-                    break;
+                    continue;
                 }
-                cinHelp();
+                multiplicador = stod(entrada);
+                break;
 
             } while (true);
 
@@ -140,17 +149,19 @@ void calculadora()
 
         case '/':
         {
+            std::string entrada;
             double divisor;
             do
             {
                 std::cout << "Dividir por quanto?\n";
-                std::cin >> divisor;
+                std::cin >> entrada;
 
-                if (!std::cin.fail())
+                if (!ehNumero(entrada))
                 {
-                    break;
+                    continue;
                 }
-                cinHelp();
+                divisor = stod(entrada);
+                break;
 
             } while (true);
 
@@ -171,17 +182,24 @@ void calculadora()
 
 double iniciarCalc()
 {
-    std::cout << "Coloque seu numero de entrada:\n";
+    std::string entrada;
     double num;
-    std::cin >> num;
 
-    if (std::cin.fail())
+    do
     {
-        std::cout << "Invalido, iniciando valor como 0\n";
-        cinHelp();
-    }
+        std::cout << "Coloque seu numero de entrada:\n";
+        std::cin >> entrada;
 
-    return num;
+        if (!ehNumero(entrada))
+        {
+            continue;
+        }
+        else
+        {
+            num = stod(entrada);
+            return num;
+        }
+    } while (true);
 }
 
 void printarMenuCalc(const double &valorAtual)
@@ -200,6 +218,7 @@ void printarMenuCalc(const double &valorAtual)
 void converterTemperatura()
 {
     char tipoAtual, tipoDesejado;
+    std::string entrada;
     int escolha;
     double temperatura;
 
@@ -215,13 +234,14 @@ void converterTemperatura()
                   << "[0] - Retonar ao menu principal\n"
                   << "-------------------------------\n";
 
-        std::cin >> escolha;
+        std::cin >> entrada;
 
-        if (std::cin.fail())
+        if (!ehNumero(entrada))
         {
-            cinHelp();
             continue;
         }
+
+        escolha = stoi(entrada);
 
         switch (escolha)
         {
@@ -249,14 +269,20 @@ void converterTemperatura()
             continue;
         }
 
-        std::cout << "Informe a temperatura de entrada: ";
-        std::cin >> temperatura;
-
-        if (std::cin.fail())
+        do
         {
-            cinHelp();
-            continue;
-        }
+            std::cout << "Informe a temperatura de entrada: ";
+            std::cin >> entrada;
+
+            if (!ehNumero(entrada))
+            {
+                continue;
+            }
+
+            temperatura = stod(entrada);
+            break;
+
+        } while (true);
 
         if (tipoAtual == 'C' && tipoDesejado == 'F')
         {
@@ -294,7 +320,7 @@ void converterTemperatura()
 
 void jogoVinteUm()
 {
-
+    std::string entrada;
     int escolha;
 
     do
@@ -305,13 +331,14 @@ void jogoVinteUm()
                   << "[0] - Retonar ao menu principal\n"
                   << "-------------------------------\n";
 
-        std::cin >> escolha;
+        std::cin >> entrada;
 
-        if (std::cin.fail())
+        if (!ehNumero(entrada))
         {
-            cinHelp();
             continue;
         }
+
+        escolha = stoi(entrada);
 
         switch (escolha)
         {
@@ -395,24 +422,30 @@ void partidaVinteUm()
             return;
         }
 
-        std::cout << "Deseja pegar mais uma carta?\n"
-                  << "[1] - Sim     " << "[0] - Nao\n";
-
         somaPC = 0;
         for (size_t i = 0; i < deckPC.size(); i++)
         {
             somaPC += deckPC[i];
         }
 
+        std::string entrada;
         int escolha;
-        std::cin >> escolha;
 
-        if (std::cin.fail())
+        do
         {
-            cinHelp();
-            enabler = false;
-            continue;
-        }
+            std::cout << "Deseja pegar mais uma carta?\n"
+                      << "[1] - Sim     " << "[0] - Nao\n";
+
+            std::cin >> entrada;
+
+            if (!ehNumero(entrada))
+            {
+                continue;
+            }
+
+            escolha = stoi(entrada);
+
+        } while (true);
 
         if (escolha == 0)
         {
@@ -497,14 +530,17 @@ void controleDeGastos()
                   << "[0] - Retonar ao menu principal\n"
                   << "-------------------------------\n";
 
+        std::string entrada;
         int escolha;
-        std::cin >> escolha;
 
-        if (std::cin.fail())
+        std::cin >> entrada;
+
+        if (!ehNumero(entrada))
         {
-            cinHelp();
             continue;
         }
+
+        escolha = stoi(entrada);
 
         switch (escolha)
         {
@@ -547,6 +583,7 @@ void controleDeGastos()
 
 Gasto registrarGasto(int id)
 {
+    std::string entrada;
     Gasto novoGasto;
 
     novoGasto.id = id;
@@ -557,16 +594,17 @@ Gasto registrarGasto(int id)
     do
     {
         std::cout << "Insira o valor: ";
-        std::cin >> novoGasto.valor;
+        std::cin >> entrada;
 
-        if (!std::cin.fail())
+        if (!ehNumero(entrada))
         {
-            break;
+            continue;
         }
-        cinHelp();
+
+        novoGasto.valor = stod(entrada);
+        return novoGasto;
 
     } while (true);
-    return novoGasto;
 }
 
 void listarGastos(const std::vector<Gasto> &listaGasto)
@@ -582,17 +620,20 @@ void listarGastos(const std::vector<Gasto> &listaGasto)
 
 void excluirGasto(std::vector<Gasto> &listaGasto)
 {
+    std::string entrada;
     int idExclusao;
     do
     {
         std::cout << "Insira o id do gasto que deseja excluir: ";
-        std::cin >> idExclusao;
+        std::cin >> entrada;
 
-        if (!std::cin.fail())
+        if (!ehNumero(entrada))
         {
-            break;
+            continue;
         }
-        cinHelp();
+
+        idExclusao = stoi(entrada);
+        break;
 
     } while (true);
 
@@ -615,9 +656,14 @@ void excluirGasto(std::vector<Gasto> &listaGasto)
     }
 }
 
-void cinHelp()
+bool ehNumero(const std::string ex)
 {
-    std::cin.clear();
-    std::cin.ignore(1000, '\n');
-    return;
+    for (unsigned char c : ex)
+    {
+        if (!std::isdigit(c))
+        {
+            return false;
+        }
+    }
+    return true;
 }
